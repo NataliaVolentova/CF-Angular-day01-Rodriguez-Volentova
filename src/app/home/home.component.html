@@ -1,0 +1,45 @@
+
+
+<h1>Car offer: </h1>
+
+<div *ngFor = 'let car of cars'>
+    <p>{{car.brand}}</p>
+    <p>{{car.color}}</p>
+</div>
+
+<div class="container">
+    <p>your score has <span (click) = 'countClick()' class="bnt btn-danger">{{clickCounter}} points </span> </p>
+</div>
+
+<div class="container">
+    <ng-template [ngIf] = 'clickCounter >200' [ngIfElse] = 'none'>
+        <p>The score has  more than 200 points, you are VIP</p>
+    </ng-template>
+
+    <ng-template #none>
+        <p>The score has less than 200 points, you are not VIP</p>
+    </ng-template>
+
+</div>
+
+<!--creating the form array which tracks the same values and status for 
+an array-->
+<label>
+    Cars:
+    <input type="text" [formGroup]='name'>
+</label>
+
+<!--creating the actual form-->
+<form [formGroup]='info' (ngSubmit)='onSubmit()'>
+    <label>
+        Brand:
+        <input type="text" formControlName='Brand'>
+    </label>
+    <label>
+        Color:
+        <input type="text" formControlName='Color'>
+    </label>
+
+    <input type="submit" class="btn btn-danger" value="Submit">
+
+</form>
